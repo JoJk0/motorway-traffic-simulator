@@ -33,7 +33,7 @@ var _inspectorMode = false;
 var simulationPause = false;
 var simulationSpeed = 1;
 var deadCounter = 0;
-var debugMode = true;
+var debugMode = false;
 
 // Convert centimetres to pixels
 function px(cm){

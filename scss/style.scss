@@ -1,0 +1,692 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	background: #373741;
+	overflow: hidden;
+	font-family: 'Roboto';
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.vehInspector{
+	display: none;
+}
+.simulator{
+	display: none;
+}
+.b{
+	color: #1eb980;
+	cursor: default;
+	&:hover{
+		filter: brightness(150%);
+	}
+	&:active{
+		i{
+			filter: brightness(50%);
+		}
+	}
+}
+
+/* NAV BUTTONS */
+
+
+	i{
+		font-size: 2em;
+	}
+	.zoomButtons{
+		position: absolute;
+		color: #FFF;
+		bottom: 1em;
+		left: 1em;
+		cursor: pointer;
+		i{
+			font-size: 2em;
+		}
+		.zoomIn{
+			margin-bottom: 1em;
+		}
+	}
+	.fullScreen{
+		position: absolute;
+		color: #FFF;
+		top: 1em;
+		left: 1em;
+		i{
+			font-size: 2em;
+		}
+	}
+	.scrollbar{
+		position: absolute;
+		color: #FFF;
+		top: 0;
+		right: 20vw;
+		height: 100vh;
+		i{
+			font-size: 2em;
+		}
+		.up{
+			position: absolute;
+			top: 1em;
+			right: 1em;
+		}
+		.barSpace{
+			
+		}
+		.down{
+			position: absolute;
+			bottom: 1em;
+			right: 1em;
+		}
+	}
+	.rightPanel{
+		width: 20vw;
+		height: 100vh;
+		position: absolute;
+		right: 0;
+		top: 0;
+		color: #fff;
+		font-family: 'Roboto';
+		overflow: hidden;
+		.mainPanel{
+			display: flex;
+			flex-direction: column;
+			.top{
+				display: flex;
+				flex-direction: row;
+				.l{
+					img.logo{
+						width: 5rem;
+						padding: 1em;
+					}
+				}
+				.r{
+					display: flex;
+					flex-direction: column;
+					justify-content: space-evenly;
+					.logoName{
+						text-transform: uppercase;
+						font-size: 0.8rem;
+						font-weight: 300;
+						padding: 1em 0;
+						padding-bottom: 0;
+					}
+					.nav{
+						display: flex;
+						justify-content: space-around;
+						.playPause,.stop,.replay{
+							border-radius: 100%;
+							cursor: pointer;
+							&:hover{
+								background: rgba(255,255,255,0.1);
+							}
+						}
+					}
+				}
+			}
+			.option{
+				.title{
+					text-transform: uppercase;
+					color: rgba(255,255,255,0.5);
+					font-weight: 300;
+					font-size: 0.9rem;
+					padding: 1em;
+					padding-bottom: 0.5em;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.addLaneClosure, .addSpeedLimit{
+						color: #1eb980;
+						font-size: 32px;
+						margin-right: 0.8rem;
+						cursor: default;
+						&:hover{
+							filter: brightness(150%);
+						}
+						&:active{
+							filter: brightness(50%);
+						}
+					}
+					.speedSliderCounter{
+						text-align: right;
+					}
+				}
+				.desc{
+					padding: 0 1em;
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+					.inputTraffic{
+						background: transparent;
+						border: 0;
+						color: #fff;
+						font-size: 2em;
+						font-family: 'Roboto';
+						font-weight: 300;
+						padding: 0.2em;
+						text-align: center;
+						width: 4em;
+						border-bottom: 1px solid #51515e;
+					}
+					.inputTrafficLabel{
+						font-size: 1.5em;
+						padding: 0.2em;
+						font-weight: 300;
+						vertical-align: baseline;
+					}
+					.speedSlider{
+						-webkit-appearance: none;  /* Override default CSS styles */
+						appearance: none;
+						width: 100%; /* Full-width */
+						height: 3px; /* Specified height */
+						background: #1eb980; /* Grey background */
+						outline: none; /* Remove outline */
+						-webkit-transition: .2s; /* 0.2 seconds transition on hover */
+						transition: opacity .2s;
+						border-radius: 5px;
+						margin: 1.5em 0;
+					}
+					.speedSlider::-webkit-slider-thumb {
+					  -webkit-appearance: none; /* Override default look */
+					  appearance: none;
+					  width: 20px; /* Set a specific slider handle width */
+					  height: 20px; /* Slider handle height */
+					  background: #1eb980; /* Green background */
+					  cursor: pointer; /* Cursor on hover */
+					  border-radius: 100%;
+					}
+					
+					.speedSlider::-moz-range-thumb {
+					  width: 25px; /* Set a specific slider handle width */
+					  height: 25px; /* Slider handle height */
+					  background: #4CAF50; /* Green background */
+					  cursor: pointer; /* Cursor on hover */
+					}
+					.trig{
+						text-align: center;
+						padding: 1em 0.6em;
+						transition: all 0.1s ease;
+						border-radius: 0.5em;
+						cursor: default;
+						img{
+							height: 2em;
+						}
+						.dsc{
+							font-size: 0.8rem;
+							padding: 1em 0;
+						}
+						&:hover{
+							filter: brightness(150%);
+						}
+						&:active{
+							background: rgba(0,0,0,0.1);
+							border-radius: 100%;
+						}
+					}
+					.list{
+						border: 1px solid #51515e;
+						border-radius: 0.2em;
+						width: 100%;
+						.allowedVehiclesEntry{
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							cursor: default;
+							.name{
+								padding: 0.8em;
+							}
+							i{
+								color: #1eb980;
+								margin-right: 1em;
+							}
+							&:hover{
+								filter: brightness(150%);
+							}
+							&:active{
+								i{
+									filter: brightness(50%);
+								}
+							}
+						}
+						.laneClosureEntry, .speedLimitEntry{
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							cursor: default;
+							.name{
+								padding: 0.8em;
+							}
+							i{
+								color: #1eb980;
+								margin-right: 1em;
+							}
+							&:hover{
+								filter: brightness(150%);
+							}
+							&:active{
+								i{
+									filter: brightness(50%);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+/* VEHICLE INSPECTOR */
+.vehInspector{
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	.topBar{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		.l{
+			display: flex;
+			align-items: center;
+			.backButton{
+				padding: 0.8em;
+				margin: 0.2em;
+				border-radius: 100%;
+				cursor: default;
+				&:hover{
+					background: rgba(255,255,255,0.1);
+				}
+				&:active{
+					background: rgba(255,255,255,0.3);
+				}
+			}
+			.title{
+				padding: 1em;
+			}
+		}
+		.deleteButton{
+			padding: 1em;
+		}
+	}
+	.mainSection{
+		.changeableProperty{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.5em 2em;
+			.label{
+				
+			}
+			select{
+				padding: 0.5em 1em;
+				font-family: 'Roboto';
+				color: #fff;
+				background: transparent;
+				background-color: #373741;
+				font-size: 1rem;
+				border: 0;
+				border-bottom: 1px solid #51515e;
+			}
+			input{
+				background: transparent;
+				border: 0;
+				color: #fff;
+				font-size: 2em;
+				font-family: 'Roboto';
+				font-weight: 300;
+				padding: 0.2em;
+				text-align: center;
+				width: 4em;
+				border-bottom: 1px solid #51515e;
+			}
+		}
+	}
+	.bottomSection{
+		display: flex;
+		flex-direction: column;
+		.vehProperty{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1em;
+			.label{
+				
+			}
+			.value{
+				
+			}
+		}
+	}
+}
+
+/* STATS */
+.statistics{
+	display: none;
+	.title{
+		font-size: 2em;
+		font-weight: 300;
+		color: #1eb980;
+		padding: 1em;
+	}
+	flex-direction: column;
+			.vehProperty{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1em;
+			.label{
+				
+			}
+			.value{
+				
+			}
+		}
+}
+
+/* WELCOME SCREEN */
+
+.welcomeScreen{
+	display: flex;
+	height: 100vh;
+	color: #FFF;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+	.logo{
+		img{
+			width: 10em;
+		}
+		.title{
+			text-transform: uppercase;
+			font-weight: 100;
+			margin-top: 1em;
+			font-size: 1.7em;
+			line-height: 140%;
+			p:first-of-type{
+				font-size: 1.8em;
+			}
+		}
+	}
+	.startButton{
+		padding: 2em;
+		i{
+			border-radius: 100%;
+			border: 1px solid white;
+			display: block;
+			padding: 0.7em;
+			margin: 1em;
+			font-size: 1.5em;
+			transition: all 0.2s ease;
+			cursor: pointer;
+			&:hover{
+				transform: scale(1.2);
+				background: white;
+				color: #373741;
+			}
+		}
+		.text{
+			text-transform: uppercase;
+			font-weight: 300;
+		}
+	}
+	.about{
+		padding: 2em;
+		line-height: 150%;
+		font-size: 0.9em;
+		color: rgba(255,255,255,0.5);
+		a{
+			color: rgba(255,255,255,0.5);
+			text-decoration: none;
+		}
+	}
+}
+
+.wizard{
+	display: none;
+	color: #fff;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	.title{
+		text-transform: uppercase;
+		font-weight: 100;
+		margin-top: 1em;
+		font-size: 2em;
+		line-height: 140%;
+	}
+	img{
+		width: 10em;
+		padding: 1em;
+	}
+	.desc{
+		padding: 1em;
+		font-weight: 300;
+	}
+	.errorMessage{
+		display: none;
+		color: #ff8a80;
+		align-items: center;
+		p{
+			padding: 1em;
+			padding-left: 0.5em;
+		}
+	}
+	.motorwayLengthInput{
+		display: flex;
+		align-items: center;
+		padding: 1em;
+		input{
+			background: transparent;
+			border: 0;
+			color: #fff;
+			font-size: 2em;
+			font-family: 'Roboto';
+			font-weight: 300;
+			padding: 0.2em;
+			text-align: center;
+			width: 2em;
+			border-bottom: 1px solid #51515e;
+			&:focus{
+				outline-color: #FFF;
+				outline-width: 2px;
+			}
+		}
+		.inputLabel{
+			padding: 1em;
+		}
+	}
+	.startButton{
+		i{
+		border-radius: 100%;
+		border: 1px solid white;
+		display: block;
+		padding: 0.7em;
+		margin: 1em;
+		font-size: 1.5em;
+		transition: all 0.2s ease;
+		cursor: pointer;
+		&:hover{
+			transform: scale(1.2);
+			background: white;
+			color: #373741;
+			}
+		}
+		.text{
+			text-transform: uppercase;
+			font-weight: 300;
+			padding-bottom: 3em;
+		}
+	}
+	.extra{
+		color: rgba(255,255,255,0.5);
+		font-weight: 300;
+	}
+}
+
+/* JUNCTION POS SELECT */
+.junctionInputs{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	input{
+		width: 3em !important;
+	}
+}
+.junctionSlider{
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2em;
+	.arrow{
+		display: flex;
+		align-items: center;
+		background: #424250;
+		height: 10px;
+		width: 100%;
+		position: relative;
+		.j{
+			background: #1eb980;
+			border-radius: 0.2em;
+			padding: 0.7em 1em;
+			color: #424250;
+			position: absolute;
+		}
+	}
+	.legend{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1em;
+		.km{
+			padding: 0.5em;
+		}
+	}
+}
+
+/* DISTR SELECT */
+.distrList{
+	display: flex;
+	flex-wrap: wrap;
+	.distr{
+		display: flex;
+		padding: 1em;
+		.icon{
+			img{
+				width: 5em;
+				padding-right: 0;
+			}
+		}
+		.forms{
+			display: flex;
+			flex-direction: column;
+			.name{
+				text-align: left;
+				padding: 0.5em 1em;
+			}
+			.inputs{
+				input{
+					background: transparent;
+					border: 0;
+					color: #fff;
+					font-size: 2em;
+					font-family: 'Roboto';
+					font-weight: 300;
+					padding: 0.2em;
+					margin: 0.2em;
+					text-align: center;
+					width: 2em;
+					border-bottom: 1px solid #51515e; 
+					&:focus{
+						outline-color: #FFF;
+						outline-width: 2px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* LANE CLOSURES */
+.laneClosureList, .speedLimitList{
+	.laneClosureAdd, .speedLimitAdd{
+		display: none;
+		input{
+			background: transparent;
+			border: 0;
+			color: #fff;
+			font-size: 1.5em;
+			font-family: 'Roboto';
+			font-weight: 300;
+			padding: 0.2em;
+			width: 3em;
+			flex-grow: 1;
+			text-align: center;
+			border-bottom: 1px solid #51515e;
+			&:focus{
+				outline-color: #FFF;
+				outline-width: 2px;
+			}
+		}
+		.laneClosureAddConfirm, .speedLimitAddConfirm{
+			color: #1eb980;
+			padding: 1em;
+			border-bottom: 1px solid #51515e;
+			cursor: default;
+		}
+		.laneClosureAddCancel, .speedLimitAddCancel{
+			color: #ff8a80;
+			padding: 1em;
+			border-bottom: 1px solid #51515e;
+			cursor: default;
+		}
+	}
+	.errorLaneClosure, .errorSpeedLimit{
+		display: none;
+		color: #ff8a80;
+		align-items: center;
+		padding: 0 1em;
+		p{
+			padding: 1em;
+			padding-left: 0.5em;
+		}
+	}
+}
